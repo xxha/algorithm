@@ -11,30 +11,8 @@
 #include <assert.h>   /*assert(int expression)*/
 #include <stdlib.h>   /*malloc() and free()*/
 
-void heap_sort(int array[], int length)
-{
-	if(NULL == array || 0 == length)
-		return ;
-
-	/* to make sure data starts at number 1 */
-	_heap_sort(array-1, length);
-}
-
-void _heap_sort(int array[], int length)
-{
-	int index = 0;
-	int median = 0;
-	construct_big_heap(array, length);
-
-	for(index = length; index > 1; index --)
-	{
-		median = array[1];
-		array[1] = array[index];
-		array[index] = median;
-
-		reconstruct_heap(array, 1, index-1);
-	}
-}
+int adjust_normal_position(int array[], int index);
+void adjust_leaf_position(int array[], int index);
 
 /* build big heap*/
 void set_sorted_value(int array[], int length)
@@ -63,7 +41,6 @@ void construct_big_heap(int array[], int length)
 		set_sorted_value(array, index);
 	}
 }
-
 void reconstruct_heap(int array[], int index, int length)
 {
 	int swap = 0;
@@ -79,6 +56,32 @@ void reconstruct_heap(int array[], int index, int length)
 		reconstruct_heap(array, swap, length);
 	}
 }
+
+void _heap_sort(int array[], int length)
+{
+	int index = 0;
+	int median = 0;
+	construct_big_heap(array, length);
+
+	for(index = length; index > 1; index --)
+	{
+		median = array[1];
+		array[1] = array[index];
+		array[index] = median;
+
+		reconstruct_heap(array, 1, index-1);
+	}
+}
+
+void heap_sort(int array[], int length)
+{
+	if(NULL == array || 0 == length)
+		return ;
+
+	/* to make sure data starts at number 1 */
+	_heap_sort(array-1, length);
+}
+
 
 int adjust_normal_position(int array[], int index)
 {

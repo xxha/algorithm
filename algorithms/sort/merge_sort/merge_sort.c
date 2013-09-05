@@ -9,6 +9,9 @@
 #include <assert.h>   /* assert(int expression) */
 #include <stdlib.h>   /* malloc(),free() */
 
+void _merge_sort(int array[], int start, int end);
+void _merge_data_in_array(int array[], int start, int middle, int end);
+
 void merge_sort(int array[], int length)
 {
 	if(NULL == array || 0 == length)

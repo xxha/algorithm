@@ -7,7 +7,7 @@ using namespace std;
 
 void reverse(char *s)     //用递归算法
 {
-	if(*(++s) != ' ')
+	if(*(++s) != '\0')  //recursion run inside first. so the output should last first.
 		reverse(s);
 	cout<<(*(s-1));
 }
